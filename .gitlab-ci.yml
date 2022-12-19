@@ -1,0 +1,21 @@
+stages:
+  - build
+
+variables:
+  DEBIAN_FRONTEND: noninteractive
+
+default:
+  interruptible: true
+
+build:
+  stage: build
+  image: ubuntu:20.04
+  variables:
+    GIT_SUBMODULE_STRATEGY: recursive
+  script:
+    - apt-get update
+    - apt-get full-upgrade -y
+    - apt-get install -y build-essential git automake libtool
+      pkg-config tcl cmake nasm libz-dev libncurses-dev libpcap-dev
+      liblzma-dev libbz2-dev libzen-dev librdkafka-dev libssl-dev
+      libcurl4-openssl-dev
